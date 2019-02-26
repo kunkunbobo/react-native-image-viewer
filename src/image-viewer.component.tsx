@@ -530,7 +530,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           return (
             <ImageZoom
               key={index}
-              renderToHardwareTextureAndroid={this.props.renderToHardwareTextureAndroid}
+              renderToHardwareTextureAndroid={image.props.renderToHardwareTextureAndroid}
               ref={el => (this.imageRefs[index] = el)}
               cropWidth={this.width}
               cropHeight={this.height}
