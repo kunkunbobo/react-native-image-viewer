@@ -84,6 +84,11 @@ export class Props {
   public pageAnimateTime?: number = 100;
 
   /**
+   * 只有android生效 决定这个视图是否要把它自己（以及所有的子视图）渲染到一个 GPU 上的硬件纹理中
+   */
+  public renderToHardwareTextureAndroid?: boolean = true;
+
+  /**
    * 长按图片的回调
    */
   public onLongPress?: (image?: IImageInfo) => void = () => {
