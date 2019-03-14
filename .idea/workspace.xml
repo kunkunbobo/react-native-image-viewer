@@ -4,7 +4,6 @@
     <list default="true" id="0dc89e44-45a5-45aa-8b86-c95b9f871824" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/image-viewer.component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/image-viewer.component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image-viewer.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/image-viewer.type.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,8 +38,8 @@
       <file leaf-file-name="image-viewer.component.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/image-viewer.component.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="112" column="3" selection-start-line="112" selection-start-column="3" selection-end-line="112" selection-end-column="31" />
+            <state relative-caret-position="201">
+              <caret line="342" column="1" lean-forward="true" selection-start-line="342" selection-start-column="1" selection-end-line="346" selection-end-column="18" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -72,7 +71,7 @@
       <file leaf-file-name="image-viewer.type.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/image-viewer.type.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
+            <state relative-caret-position="1245">
               <caret line="83" column="9" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
@@ -121,9 +120,8 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="42" />
-    <option name="y" value="24" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="712" />
   </component>
@@ -191,15 +189,16 @@
       <updated>1551173051118</updated>
       <workItem from="1551173052446" duration="396000" />
       <workItem from="1551175310324" duration="267000" />
-      <workItem from="1552558099736" duration="650000" />
+      <workItem from="1552558099736" duration="811000" />
+      <workItem from="1552563147225" duration="95000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1313000" />
+    <option name="totallyTimeSpent" value="1569000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="24" width="1280" height="712" extended-state="0" />
+    <frame x="0" y="24" width="1280" height="712" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -230,6 +229,55 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/image-viewer.component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7020">
+          <caret line="468" column="153" selection-start-line="468" selection-start-column="123" selection-end-line="468" selection-end-column="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/image-viewer.style.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/image-viewer.component.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/built/image-viewer.style.d.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/image-viewer.type.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="83" column="9" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/image-viewer.component.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="112" column="3" selection-start-line="112" selection-start-column="3" selection-end-line="112" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -349,7 +397,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/image-viewer.type.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="1245">
           <caret line="83" column="9" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -366,8 +414,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/image-viewer.component.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="112" column="3" selection-start-line="112" selection-start-column="3" selection-end-line="112" selection-end-column="31" />
+        <state relative-caret-position="201">
+          <caret line="342" column="1" lean-forward="true" selection-start-line="342" selection-start-column="1" selection-end-line="346" selection-end-column="18" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
