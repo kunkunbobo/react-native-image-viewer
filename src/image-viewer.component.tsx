@@ -36,6 +36,8 @@ export default class ImageViewer extends React.Component<Props, State> {
   private width = 0;
   private height = 0;
 
+  private offsetX = 0;
+
   private styles = styles(0, 0, 'transparent');
 
   // 是否执行过 layout. fix 安卓不断触发 onLayout 的 bug
@@ -115,12 +117,14 @@ export default class ImageViewer extends React.Component<Props, State> {
       }
     );
   }
+
   /**
    * reset Image scale and position
    */
   public resetImageByIndex = (index: number) => {
     this.imageRefs[index] && this.imageRefs[index].reset();
   };
+
   /**
    * 调到当前看图位置
    */
@@ -182,9 +186,9 @@ export default class ImageViewer extends React.Component<Props, State> {
     }
 
     // 如果已知源图片宽高，直接设置为 success
-    if (image.width && image.height){
-      if(this.props.enablePreload && imageLoaded===false){
-        Image.prefetch(image.url)
+    if (image.width && image.height) {
+      if (this.props.enablePreload && imageLoaded === false) {
+        Image.prefetch(image.url);
       }
       imageStatus.width = image.width;
       imageStatus.height = image.height;
@@ -217,13 +221,13 @@ export default class ImageViewer extends React.Component<Props, State> {
   }
 
   /**
-  * 预加载图片
-  */
-  public preloadImage = (index: number) =>{
-    if (index < this.state.imageSizes!.length){
+   * 预加载图片
+   */
+  public preloadImage = (index: number) => {
+    if (index < this.state.imageSizes!.length) {
       this.loadImage(index + 1);
     }
-  }
+  };
   /**
    * 触发溢出水平滚动
    */
@@ -235,10 +239,12 @@ export default class ImageViewer extends React.Component<Props, State> {
 
     if (offsetXRTL < 0) {
       if (this!.state!.currentShowIndex || 0 < this.props.imageUrls.length - 1) {
+        this.offsetX = offsetX;
         this.loadImage((this!.state!.currentShowIndex || 0) + 1);
       }
     } else if (offsetXRTL > 0) {
       if (this!.state!.currentShowIndex || 0 > 0) {
+        this.offsetX = offsetX;
         this.loadImage((this!.state!.currentShowIndex || 0) - 1);
       }
     }
@@ -288,6 +294,10 @@ export default class ImageViewer extends React.Component<Props, State> {
     }
   };
 
+  public animationTime = (time:number=0)=>{
+    return time / this.width * Math.abs(this.offsetX)
+  }
+
   /**
    * 到上一张
    */
@@ -302,13 +312,11 @@ export default class ImageViewer extends React.Component<Props, State> {
       ? this.standardPositionX + this.width
       : this.standardPositionX - this.width;
     this.standardPositionX = this.positionXNumber;
-    this.positionX.setValue(this.positionXNumber);
-
-    // Animated.timing(this.positionX, {
-    //   toValue: this.positionXNumber,
-    //   duration: this.props.pageAnimateTime,
-    //   useNativeDriver: true
-    // }).start();
+    Animated.timing(this.positionX, {
+      toValue: this.positionXNumber,
+      duration:this.animationTime(this.props.pageAnimateTime),
+      useNativeDriver: true
+    }).start();
 
     const nextIndex = (this.state.currentShowIndex || 0) - 1;
 
@@ -338,14 +346,11 @@ export default class ImageViewer extends React.Component<Props, State> {
       ? this.standardPositionX - this.width
       : this.standardPositionX + this.width;
     this.standardPositionX = this.positionXNumber;
-    this.positionX.setValue(this.positionXNumber);
-
-    // Animated.timing(this.positionX, {
-    //   toValue: this.positionXNumber,
-    //   duration: this.props.pageAnimateTime,
-    //   useNativeDriver: true
-    // }).start();
-
+    Animated.timing(this.positionX, {
+      toValue: this.positionXNumber,
+      duration: this.animationTime(this.props.pageAnimateTime),
+      useNativeDriver: true
+    }).start();
     const nextIndex = (this.state.currentShowIndex || 0) + 1;
 
     this.setState(
@@ -353,6 +358,7 @@ export default class ImageViewer extends React.Component<Props, State> {
         currentShowIndex: nextIndex
       },
       () => {
+        this.offsetX = 0;
         if (this.props.onChange) {
           this.props.onChange(this.state.currentShowIndex);
         }
@@ -441,7 +447,7 @@ export default class ImageViewer extends React.Component<Props, State> {
 
     const ImageElements = this.props.imageUrls.map((image, index) => {
       if ((this.state.currentShowIndex || 0) > index + 1 || (this.state.currentShowIndex || 0) < index - 1) {
-        return <View key={index} style={{ width: screenWidth, height: screenHeight }} />;
+        return <View key={index} style={{ width: screenWidth, height: screenHeight }}/>;
       }
 
       if (!this.handleLongPressWithIndex.has(index)) {
@@ -453,7 +459,7 @@ export default class ImageViewer extends React.Component<Props, State> {
       const imageInfo = this.state.imageSizes![index];
 
       if (!imageInfo || !imageInfo.status) {
-        return <View key={index} style={{ width: screenWidth, height: screenHeight }} />;
+        return <View key={index} style={{ width: screenWidth, height: screenHeight }}/>;
       }
 
       // 如果宽大于屏幕宽度,整体缩放到宽度是屏幕宽度
@@ -533,8 +539,8 @@ export default class ImageViewer extends React.Component<Props, State> {
               ...image.props.source
             };
           }
-          if (this.props.enablePreload){
-            this.preloadImage(this.state.currentShowIndex||0)
+          if (this.props.enablePreload) {
+            this.preloadImage(this.state.currentShowIndex || 0);
           }
           return (
             <ImageZoom
@@ -570,15 +576,15 @@ export default class ImageViewer extends React.Component<Props, State> {
               imageHeight={this.props.failImageSource ? this.props.failImageSource.height : screenHeight}
             >
               {this.props.failImageSource &&
-                this!.props!.renderImage!({
-                  source: {
-                    uri: this.props.failImageSource.url
-                  },
-                  style: {
-                    width: this.props.failImageSource.width,
-                    height: this.props.failImageSource.height
-                  }
-                })}
+              this!.props!.renderImage!({
+                source: {
+                  uri: this.props.failImageSource.url
+                },
+                style: {
+                  width: this.props.failImageSource.width,
+                  height: this.props.failImageSource.height
+                }
+              })}
             </Wrapper>
           );
       }
@@ -613,14 +619,14 @@ export default class ImageViewer extends React.Component<Props, State> {
           {this!.props!.renderIndicator!((this.state.currentShowIndex || 0) + 1, this.props.imageUrls.length)}
 
           {this.props.imageUrls[this.state.currentShowIndex || 0] &&
-            this.props.imageUrls[this.state.currentShowIndex || 0].originSizeKb &&
-            this.props.imageUrls[this.state.currentShowIndex || 0].originUrl && (
-              <View style={this.styles.watchOrigin}>
-                <TouchableOpacity style={this.styles.watchOriginTouchable}>
-                  <Text style={this.styles.watchOriginText}>查看原图(2M)</Text>
-                </TouchableOpacity>
-              </View>
-            )}
+          this.props.imageUrls[this.state.currentShowIndex || 0].originSizeKb &&
+          this.props.imageUrls[this.state.currentShowIndex || 0].originUrl && (
+            <View style={this.styles.watchOrigin}>
+              <TouchableOpacity style={this.styles.watchOriginTouchable}>
+                <Text style={this.styles.watchOriginText}>查看原图(2M)</Text>
+              </TouchableOpacity>
+            </View>
+          )}
           <View style={[{ bottom: 0, position: 'absolute', zIndex: 9 }, this.props.footerContainerStyle]}>
             {this!.props!.renderFooter!(this.state.currentShowIndex)}
           </View>
@@ -650,7 +656,7 @@ export default class ImageViewer extends React.Component<Props, State> {
 
     return (
       <View style={this.styles.menuContainer}>
-        <View style={this.styles.menuShadow} />
+        <View style={this.styles.menuShadow}/>
         <View style={this.styles.menuContent}>
           <TouchableHighlight underlayColor="#F2F2F2" onPress={this.saveToLocal} style={this.styles.operateContainer}>
             <Text style={this.styles.operateText}>{this.props.menuContext.saveToLocal}</Text>
