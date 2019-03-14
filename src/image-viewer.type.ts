@@ -82,7 +82,7 @@ export class Props {
    * 翻页时的动画时间
    */
   public pageAnimateTime?: number = 100;
-  
+
   /**
    * 长按图片的回调
    */
